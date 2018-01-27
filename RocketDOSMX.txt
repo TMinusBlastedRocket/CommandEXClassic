@@ -1,0 +1,175 @@
+@name RocketDOSMX
+@inputs Chatin:string StartTime Reset Keyborad:string INUSE User:entity
+@outputs CCL:string ChatOut:string Clear Gpuupdate STARTDONE Kick Chime OS:string OSMaker:string Clour:vector BGClour:vector Update VideoOUT:string Soundupdate SoundOUT:string
+@persist Test Music Chat Setup ConsoleScreen Web Help WebIn Data Lol:string Time
+@trigger 
+runOnTick(1)
+OS="RocketDOSMX"
+OSMaker="T-BlastedRocket"
+SYSSTART=1
+CCL="6758MX:RocketDOSMX"
+if (StartTime == 1) {
+Clour=vec(255,0,0)
+BGClour=vec(255,255,255)
+Update=1
+Runchime=1
+STARTDONE=1
+Gpuupdate=1
+Gpuupdate=0
+}
+if (INUSE == 1) {
+VideoOUT="RocketDOSMX
+"+">"+Keyborad
+}
+if (Keyborad == "Test
+" & User:keyPressed("ENTER")){
+Test=1
+Gpuupdate=1
+}
+if (Test==1){
+VideoOUT="Test Done"
+Gpuupdate=1
+}
+if (Keyborad == "Chat
+" & User:keyPressed("ENTER")){
+Chat=1
+Gpuupdate=1
+Gpuupdate=0
+Gpuupdate=1
+}
+if (Chat==1){
+ChatOut=Keyborad
+VideoOUT="SimpleChat
+"+Chatin+"
+"+ChatOut
+Gpuupdate=1
+Gpuupdate=0
+Gpuupdate=1
+Clear=1
+
+}
+
+if (Keyborad == "Music
+" & User:keyPressed("ENTER")){
+Music=1
+Gpuupdate=1
+}
+if (Music==1){
+soundPlay("lol2",5000,"music/hl1_song25_remix3.mp3")
+Gpuupdate=1
+Clear=1
+}
+if (Keyborad == "Url
+" & User:keyPressed("ENTER")){
+Web=1
+}
+if (Keyborad == "Time
+" & User:keyPressed("ENTER")){
+Time=1
+}
+if (Time==1){
+VideoOUT=date():toString() 
+}
+if (Web==1){
+VideoOUT="WEB Type a URl In to The Code That is Under the If below"
+WebIn=1
+}
+if (WebIn==1) {
+httpRequest("http://textfiles.com/humor/101nos.txt")
+Lol=httpData()
+Data=1
+Web=0
+}
+if (Data==1 & Lol !="" ) {
+VideoOUT=Lol
+}
+if (Keyborad == "Help
+" & User:keyPressed("ENTER")){
+Help=1
+}
+if (Help==1){
+VideoOUT="Look at the code too much Commands to fit on screen"
+}
+if (User:keyPressed("BackSpace")&Chat==1) {
+ChatOut=ChatOut+""
+Gpuupdate=1
+Clear=1
+}
+if (User:keyPressed("BackSpace")) {
+VideoOUT=VideoOUT+" "
+Gpuupdate=1
+Clear=1
+}
+if (User:keyPressed("Home")) {
+Music=0
+Test=0
+Chat=0
+Gpuupdate=0
+Clear=0
+Web=0
+Help=0
+WebIn=0
+Time=0
+Data=0
+}
+if (Keyborad == "Blue
+" & User:keyPressed("ENTER")){
+Clour=vec(0,0,255)
+}
+if (Keyborad == "Red
+" & User:keyPressed("ENTER")){
+Clour=vec(255,0,0)
+}
+if (Keyborad == "Green
+" & User:keyPressed("ENTER")){
+Clour=vec(0,255,0)
+}
+if (Keyborad == "Purple
+" & User:keyPressed("ENTER")){
+Clour=vec(127,0,255)
+}
+if (Keyborad == "Yellow
+" & User:keyPressed("ENTER")){
+Clour=vec(255,255,0)
+}
+if (Keyborad == "Pink
+" & User:keyPressed("ENTER")){
+Clour=vec(255,192,203)
+}
+if (Keyborad == "Teal
+" & User:keyPressed("ENTER")){
+Clour=vec(0,128,128)
+}
+if (Keyborad == "BGRed
+" & User:keyPressed("ENTER")){
+BGClour=vec(255,0,0)
+}
+if (Keyborad == "BGGreen
+" & User:keyPressed("ENTER")){
+BGClour=vec(0,255,0)
+}
+if (Keyborad == "BGPurple
+" & User:keyPressed("ENTER")){
+BGClour=vec(127,0,255)
+}
+if (Keyborad == "BGYellow
+" & User:keyPressed("ENTER")){
+BGClour=vec(255,255,0)
+}
+if (Keyborad == "BGPink
+" & User:keyPressed("ENTER")){
+BGClour=vec(255,192,203)
+}
+if (Keyborad == "BGBlue
+" & User:keyPressed("ENTER")){
+BGClour=vec(0,0,255)
+}
+if (Keyborad == "BGTeal
+" & User:keyPressed("ENTER")){
+BGClour=vec(0,128,128)
+}
+#RocketDOSMX,RocketDOSFX2,RocketDOSFX and RocketDOS4 are a Command Line OS To show off CommandEX
+#This Operating System falls under Class A of the CommanedEX Coders Credit License
+#This Program Was
+#Bulit For CommandEX and has been made COMPLETLY by the coder and has been verfiyed by The CommandEX Project and can be copyed Under
+#a Class B Protection CommandEXProjectProtectionID:6758MX:RocketDOSMX Built By T-BlastedRocket

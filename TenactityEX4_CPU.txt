@@ -1,0 +1,87 @@
+@name TenactityEX4 CPU
+@inputs CCLID:string Power Lineupdate STARTDONE KickIN Soundplay:string Soundupdate VideoIN:string Reset UpdateIN GPUMAKER:string ClourIN:vector BGClourIN:vector Inuse GPUTYPE:string OS:string OSMAKER:string KeyboradIN:string User:entity
+@outputs StopBoot CCLFAIL DataLoad LineupdateOut KickOUT UserOUT:entity Inuseout Sample:string Sound Keyborad:string VideoOUT:string Update ResetOUT StartP1 StartP2 StartP3 Line ClourOUT:vector LoadOS BGClourOUT:vector
+@persist Data:string
+@trigger
+runOnTick(1)
+SecureBoot=0
+StopBoot
+if (DataLoad==0) {
+httpRequest("https://www.dropbox.com/s/in6v8r9o31e5t2w/CommandEXProtectedPrograms.txt?dl=1")
+Data=httpData()
+LOL=Data:explode("
+") 
+}
+if (Data:find(CCLID)!=1){
+CCLIDV="Verifyed "+CCLID
+DataLoad=1
+EndLINE=""
+}
+if (Data:find(CCLID)==0|CCLID==""){
+CCLIDV="Non-Verifyed"
+DataLoad=1
+EndLINE="Warning Un-Licensed OS Problems Are Likey"
+CCLFAIL=1
+}
+if (SecureBoot==1 & CCLFAIL==1) {
+StopBoot=1
+EndLINE="SecureBoot Error UnLicensed OS Found Abouting"
+}
+if (StartP1==0 & Power==1 & DataLoad==1 & Data!=""){
+soundPlay("lol",5000,"ui/chime_rd_2base_neg.wav")
+Sound=1
+Sound=0
+ResetOUT=0
+Line=3
+VideoOUT="CommandEX Frimware v4.0"+" 
+GPUMAKER "+GPUMAKER+" GPU TYPE "+GPUTYPE+
+" 
+OS Maker "+OSMAKER+" OS "+OS+"     
+CommanedEX Coders Credit License "+CCLIDV+
+"
+Press Enter To Continue"+"
+"+EndLINE
+ClourOUT=vec(255,255,255)
+BGClourOUT=vec(0,0,0)
+Update=1
+Update=0
+StartP1=1
+Systemon=1
+}
+if (Power==0){
+OFF=1
+ResetOUT=1
+}
+if (Reset==1){
+reset()
+}
+if (UpdateIN==1 & StartP2==1 & OFF==0) {
+Line=4
+VideoOUT=VideoIN
+ClourOUT=ClourIN
+BGClourOUT=BGClourIN
+Update=1
+Update=0
+Inuseout=Inuse
+LineupdateOut=Lineupdate
+}
+if (User:keyPressed("ENTER") & StartP2==0 & OFF==0 & StopBoot==0) {
+StartP2=1
+LoadOS=1
+}
+if (OS == "" & StartP2 ==1) {
+VideoOUT="Error OS Not Found or Not Compaible"
+}
+if (Soundupdate == 1) {
+soundPlay("lol2",5000,Soundplay)
+}
+if (StartP2==1) {
+Keyborad=KeyboradIN
+UserOUT=User
+}
+if (STARTDONE == 1){
+LoadOS=0
+}
+if (User:keyPressed("End") & STARTDONE==1) {
+ResetOUT=1
+}

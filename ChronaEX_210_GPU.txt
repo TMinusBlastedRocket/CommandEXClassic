@@ -1,0 +1,16 @@
+@name ChronaEX 210 GPU
+@inputs ConsoleScreen:wirelink User:entity Screen:wirelink VideoIN:string Update Reset ClourIn:vector BGClourIn:vector
+@outputs Line GPUMAKER:string UpdateOUT VideoOUT:string ClourOut:vector GPUTYPE:string BGClourOUT:vector
+@persist 
+@trigger
+runOnTick(1)
+GPUMAKER="T-BLASTEDROCKET"
+GPUTYPE="ChoronaEX 200"
+VideoOUT=VideoIN
+ClourOut=ClourIn
+BGClourOUT=BGClourIn
+Screen:egpText(1,VideoIN,vec2(Line,300))
+Screen:egpColor(1,ClourIn)
+ConsoleScreen:writeString(VideoIN,0,Line,ClourIn,BGClourIn)
+
+
