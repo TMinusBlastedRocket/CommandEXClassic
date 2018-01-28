@@ -1,6 +1,0 @@
-@name Reset System
-@inputs ResetI
-@outputs ResetO
-@persist 
-@trigger 
-ResetO=ResetI
